@@ -7,6 +7,10 @@ module com.example.agenda {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
 
-    opens com.example.agenda to javafx.fxml;
-    exports com.example.agenda;
+    exports com.example.agenda.gestion;
+    opens com.example.agenda.gestion to javafx.fxml;
+    exports com.example.agenda.conexion;
+    opens com.example.agenda.conexion to javafx.fxml;
+    exports com.example.agenda.modulos;
+    opens com.example.agenda.modulos to javafx.fxml;
 }

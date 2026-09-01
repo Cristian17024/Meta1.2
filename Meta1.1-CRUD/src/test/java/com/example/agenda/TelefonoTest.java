@@ -1,5 +1,6 @@
 package com.example.agenda;
 
+import com.example.agenda.modulos.Telefono;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,12 +1,14 @@
-package com.example.agenda;
+package com.example.agenda.gestion;
 
+import com.example.agenda.conexion.ConexionBD;
+import com.example.agenda.modulos.Telefono;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestionTelefonosBD {
+public class GestionTelefonosBD implements ITelefonoDAO {
 
     public List<Telefono> obtenerTelefonosDePersona(int personaId) {
 

@@ -1,5 +1,7 @@
 package com.example.agenda;
 
+import com.example.agenda.gestion.GestionPersonasBD;
+import com.example.agenda.modulos.Persona;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 

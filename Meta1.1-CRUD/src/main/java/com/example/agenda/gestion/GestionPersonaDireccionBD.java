@@ -1,4 +1,8 @@
-package com.example.agenda;
+package com.example.agenda.gestion;
+
+import com.example.agenda.conexion.ConexionBD;
+import com.example.agenda.modulos.Direccion;
+import com.example.agenda.modulos.Persona;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

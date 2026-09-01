@@ -1,18 +1,20 @@
-package com.example.agenda;
+package com.example.agenda.gestion;
 
+import com.example.agenda.conexion.ConexionBD;
+import com.example.agenda.modulos.Persona;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestionDireccionesBD {
+public class GestionPersonasBD implements IPersonaDAO {
 
-    public List<Direccion> obtenerTodasLasDirecciones() {
+    public List<Persona> obtenerTodasLasPersonas() {
 
-        List<Direccion> direcciones = new ArrayList<>();
+        List<Persona> personas = new ArrayList<>();
 
-        String sql = "SELECT id, direccion FROM Direcciones";
+        String sql = "SELECT id, nombre, direccion FROM Personas";
 
         try (Connection conexion = ConexionBD.conectar();
              PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -20,29 +22,31 @@ public class GestionDireccionesBD {
 
             while (resultado.next()) {
 
-                Direccion direccion = new Direccion(
+                Persona persona = new Persona(
                         resultado.getInt("id"),
+                        resultado.getString("nombre"),
                         resultado.getString("direccion")
                 );
 
-                direcciones.add(direccion);
+                personas.add(persona);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return direcciones;
+        return personas;
     }
 
-    public boolean agregarDireccion(Direccion direccion) {
+    public boolean agregarPersona(Persona persona) {
 
-        String sql = "INSERT INTO Direcciones (direccion) VALUES (?)";
+        String sql = "INSERT INTO Personas (nombre, direccion) VALUES (?, ?)";
 
         try (Connection conexion = ConexionBD.conectar();
              PreparedStatement sentencia = conexion.prepareStatement(sql)) {
 
-            sentencia.setString(1, direccion.getDireccion());
+            sentencia.setString(1, persona.getNombre());
+            sentencia.setString(2, persona.getDireccion());
 
             sentencia.executeUpdate();
 
@@ -54,15 +58,16 @@ public class GestionDireccionesBD {
         }
     }
 
-    public boolean modificarDireccion(Direccion direccion) {
+    public boolean modificarPersona(Persona persona) {
 
-        String sql = "UPDATE Direcciones SET direccion = ? WHERE id = ?";
+        String sql = "UPDATE Personas SET nombre = ?, direccion = ? WHERE id = ?";
 
         try (Connection conexion = ConexionBD.conectar();
              PreparedStatement sentencia = conexion.prepareStatement(sql)) {
 
-            sentencia.setString(1, direccion.getDireccion());
-            sentencia.setInt(2, direccion.getId());
+            sentencia.setString(1, persona.getNombre());
+            sentencia.setString(2, persona.getDireccion());
+            sentencia.setInt(3, persona.getId());
 
             sentencia.executeUpdate();
 
@@ -74,9 +79,9 @@ public class GestionDireccionesBD {
         }
     }
 
-    public boolean eliminarDireccion(int id) {
+    public boolean eliminarPersona(int id) {
 
-        String sql = "DELETE FROM Direcciones WHERE id = ?";
+        String sql = "DELETE FROM Personas WHERE id = ?";
 
         try (Connection conexion = ConexionBD.conectar();
              PreparedStatement sentencia = conexion.prepareStatement(sql)) {

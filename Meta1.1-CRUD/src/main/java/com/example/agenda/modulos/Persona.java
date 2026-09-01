@@ -1,4 +1,4 @@
-package com.example.agenda;
+package com.example.agenda.modulos;
 
 public class Persona {
 

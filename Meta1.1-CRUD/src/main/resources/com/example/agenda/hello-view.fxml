@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.agenda.HelloController">
+            fx:controller="com.example.agenda.conexion.HelloController">
 
     <top>
         <Label text="AGENDA DE PERSONAS"
@@ -58,8 +58,6 @@
                         onAction="#eliminarPersona"/>
 
             </HBox>
-
-            <!-- TABLA DE PERSONAS -->
 
             <Label text="Personas registradas"
                    style="-fx-font-size: 16px; -fx-font-weight: bold;"/>

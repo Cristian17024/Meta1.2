@@ -1,4 +1,4 @@
-package com.example.agenda;
+package com.example.agenda.modulos;
 import java.sql.*;
 
 public class AgendaDB {
